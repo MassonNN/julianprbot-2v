@@ -5,9 +5,8 @@ from typing import Any, List, Optional, TypeVar, final, overload
 from redis.asyncio.client import Redis
 
 from src.configuration import conf
-from src.language.translator import LocaleScheme
 
-KeyLike = TypeVar("KeyLike", str, LocaleScheme)
+KeyLike = TypeVar("KeyLike", str, int)
 
 
 def build_redis_client() -> Redis:

@@ -7,7 +7,6 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.fsm.strategy import FSMStrategy
 
-from src.bot.middlewares.translator_md import TranslatorMiddleware
 from src.cache import Cache
 from src.configuration import conf
 
@@ -33,7 +32,5 @@ def get_dispatcher(
         dp.include_router(router)
 
     # Register middlewares
-    dp.message.middleware(TranslatorMiddleware())
-    dp.callback_query.middleware(TranslatorMiddleware())
 
     return dp

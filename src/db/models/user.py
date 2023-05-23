@@ -4,8 +4,6 @@ import sqlalchemy.orm as orm
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.bot.structures.role import Role
-
-from ...language.enums import Locales
 from .base import Base
 from .chat import Chat
 
@@ -23,10 +21,6 @@ class User(Base):
     """ Telegram profile first name """
     second_name: Mapped[str] = mapped_column(sa.Text, unique=False, nullable=True)
     """ Telegram profile second name """
-    language_code: Mapped[Locales] = mapped_column(
-        sa.Enum(Locales), unique=False, nullable=True
-    )
-    """ Telegram profile language code """
     is_premium: Mapped[bool] = mapped_column(sa.Boolean, unique=False, nullable=False)
     """ Telegram user premium status """
     role: Mapped[Role] = mapped_column(sa.Enum(Role), default=Role.USER)

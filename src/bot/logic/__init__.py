@@ -1,4 +1,4 @@
 from .start import start_router
-from .help import help_router
+from .register import register_router
 
-routers = (start_router, help_router)
+routers = (start_router, register_router, )

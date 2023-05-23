@@ -5,8 +5,6 @@ from os import getenv
 
 from sqlalchemy.engine import URL
 
-from .language.enums import LocaleIdentificationMode, Locales
-
 
 @dataclass
 class DatabaseConfig:
@@ -56,25 +54,15 @@ class BotConfig:
 
 
 @dataclass
-class TranslationsConfig:
-    """Translations configuration"""
-
-    locale_identify_mode = LocaleIdentificationMode.BY_DATABASE
-    default_locale = "ru"
-
-
-@dataclass
 class Configuration:
     """All in one configuration's class"""
 
     debug = bool(getenv("DEBUG"))
     logging_level = int(getenv("LOGGING_LEVEL", logging.INFO))
-    default_locale = Locales.RU
 
     db = DatabaseConfig()
     redis = RedisConfig()
     bot = BotConfig()
-    translate = TranslationsConfig()
 
 
 conf = Configuration()
