@@ -14,7 +14,7 @@ start_router = Router(name="start")
 @start_router.message(CommandStart(), RegisterFilter())
 async def start_wo_register(message: types.Message, state: FSMContext):
     """Start command handler"""
-    await state.set_state(RegisterGroup.select)
+    await state.set_state(RegisterGroup.confirmation)
     return await message.answer(
         'Привет! Это JulianPR, который поможет тебе в раскрутке или наоборот поможет '
         'заработать денег! Для того, чтобы начать регистрацию, нажми на кнопку внизу!',

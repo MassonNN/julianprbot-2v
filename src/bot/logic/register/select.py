@@ -27,7 +27,7 @@ async def register_confirmation(message: Message, state: FSMContext):
         'role': ProfileType.BUYER
     })
     await state.set_state(RegisterForBuyer.rules)
-    await message.answer('Ознакомьтесь с нашими правилами', reply_markup=REGISTER_RULES_READ)
+    return await message.answer('Ознакомьтесь с нашими правилами', reply_markup=REGISTER_RULES_READ)
 
 
 @register_router.message(F.text == 'Я владелец канала(ов) и хочу продавать рекламу', RegisterGroup.select)
@@ -36,7 +36,7 @@ async def register_confirmation(message: Message, state: FSMContext):
         'role': ProfileType.SELLER
     })
     await state.set_state(RegisterForSeller.rules)
-    await message.answer('Ознакомьтесь с нашими правилами', reply_markup=REGISTER_RULES_READ)
+    return await message.answer('Ознакомьтесь с нашими правилами', reply_markup=REGISTER_RULES_READ)
 
 
 @register_router.callback_query(F.data == 'read_rules', RegisterForSeller.rules)
