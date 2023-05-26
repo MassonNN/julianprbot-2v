@@ -9,7 +9,6 @@ from src.bot.structures.data_structure import TransferData
 from src.cache import Cache
 from src.configuration import conf
 from src.db.database import create_session_maker
-from src.language.translator import Translator
 
 
 async def start_bot():
@@ -22,7 +21,7 @@ async def start_bot():
     await dp.start_polling(
         bot,
         allowed_updates=dp.resolve_used_update_types(),
-        **TransferData(pool=create_session_maker(), translator=Translator(), cache=cache)
+        **TransferData(pool=create_session_maker(), cache=cache)
     )
 
 
