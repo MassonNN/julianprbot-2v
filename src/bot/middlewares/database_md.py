@@ -17,10 +17,13 @@ class DatabaseMiddleware(BaseMiddleware):
         event: Union[Message, CallbackQuery],
         data: TransferData,
     ) -> Any:
-        pool: Callable[[], AsyncSession] = data["pool"]
-        session = pool()
-        data["db"] = Database(session)
-        try:
+        # pool: Callable[[], AsyncSession] = data["pool"]
+        # session = pool()
+        # data["db"] = Database(session)
+        # try:
+        #     return await handler(event, data)
+        # finally:
+        #     await session.close()
+        async with data["pool"]() as session:
+            data["db"] = Database(session)
             return await handler(event, data)
-        finally:
-            await session.close()
