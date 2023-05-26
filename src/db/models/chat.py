@@ -1,6 +1,6 @@
 """ Chat model file """
 import sqlalchemy as sa
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 
@@ -21,4 +21,5 @@ class Chat(Base):
     chat_user: Mapped[int] = mapped_column(
         sa.ForeignKey("user.id", ondelete="CASCADE"), unique=False, nullable=True
     )
+    channel = relationship("Channel", uselist=False)
     """ Foreign key to user (it can has effect only in private chats) """
